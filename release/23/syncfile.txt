@@ -1,0 +1,6 @@
+synclocations=\
+			Folder1<-->Folder2;
+prefix1=.
+prefix2=.
+lastsyncfile=./lastsyncdate.txt
+filter=Name:\.DS_Store;Name:Thumbs\.db;Name:.*\.suo;Name:.*~
