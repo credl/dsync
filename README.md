@@ -59,10 +59,11 @@ Sync files
 While passing the locations directly as parameters, a sync file is much more flexible and allows for specifying multiple directories to be synchronized.
 The utility is then called with:
 
-   java -jar dsync.jar syncfile.txt
+   `java -jar dsync.jar syncfile.txt`
 
 A sync file has the following format:
 
+```
    synclocations=d1<-->d2;d3-->d4;d5<--d6
    prefix1=/home/user
    prefix2=/home/user
@@ -73,6 +74,7 @@ A sync file has the following format:
    lastsyncfile=[path]
    usecaching=[boolean]
    ignoresymboliclinks=[boolean]
+```
 
 Only one of "referencedate", "lastsync" or "lastsyncfile" must be specified (usually "lastsyncfile").
    
@@ -103,17 +105,19 @@ One alternative under Linux systems is to mount remove directories locally using
 For mounting using WINS names (rather than IP addresses), the package winbind nees to be installed.
 Depending on the distribution this requires a command such as (on Ubuntu):
 
-   apt-get install winbind
+   ```apt-get install winbind```
 
 Make sure that "/etc/nsswitch.conf" has "wins" in the "hosts" line, as in:
 
-   hosts: files dns wins
+   ```hosts: files dns wins```
 
 Besides the actual call to dsync, synchronization requires then to mount the remote directory before and to unmount it after the call:
 
+```
    sudo mount -o user=[SAMBAUSER] -t cifs //[REMOVEHOST]/[REMOEVDIRECTORY] [MOUNTDIRECTORY]
    java -jar dsync.jar syncfile.txt
    sudo umount [MOUNTDIRECTORY]
+```
 
 However, there are also several other options to work with remove directories.
 For instance, under Windows systems the paths might directly point to the remove location (e.g. "\\my-remote-computer\data").
