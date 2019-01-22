@@ -40,7 +40,7 @@ Parameters
 
 The utility can be called by executing:
 
-   java -jar dsync.jar [PARAMETERS]
+   `java -jar dsync.jar [PARAMETERS]`
 
 There are the following possibilities for the parameters:
 
