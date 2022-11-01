@@ -333,18 +333,20 @@ public class Synchronizer{
 				// Directories
 				
 				// Make a list of all subdirecories
-				String[] children1 = location1.list();
-				String[] children2 = location2.list();
-				Set<String> children = new TreeSet<String>();
-				if (children1 != null){
-					for (int i = 0; i < children1.length; i++){
-						if (children1[i].compareTo("") != 0) children.add(children1[i]);
-					}
+				String[] children1 = new File(location1.getAbsolutePath()).list();
+				String[] children2 = new File(location2.getAbsolutePath()).list();
+				if (children1 == null || children2 == null) {
+					System.err.println("      WARNING: Cannot synchronize two directories (readability of locations):\n" +
+					                   "         1. (" + (children1 == null ? "false" : "true ") + ") " + location1 + "\n" +
+									   "         2. (" + (children2 == null ? "false" : "true ") + ") " + location2);
+					return actions;
 				}
-				if (children2 != null){
-					for (int i = 0; i < children2.length; i++){
-						if (children2[i].compareTo("") != 0) children.add(children2[i]);
-					}
+				Set<String> children = new TreeSet<String>();
+				for (int i = 0; i < children1.length; i++){
+					if (children1[i].compareTo("") != 0) children.add(children1[i]);
+				}
+				for (int i = 0; i < children2.length; i++){
+					if (children2[i].compareTo("") != 0) children.add(children2[i]);
 				}
 				
 				// Recursive traversal through the subdirectories

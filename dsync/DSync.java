@@ -25,7 +25,7 @@ public class DSync {
 
 	public static void main(String[] args){
 
-		String versionString = "2.30, 12.01.2014";
+		String versionString = "2.40, 02.11.2022";
 		
 		MultiProperties prop = null;
 		List<ActionGroup> actions = null;
